@@ -33,3 +33,21 @@ def bubble_sort(array):
             break
 
         return array
+
+
+def insertion_sort(array):
+    if len(array) == 0:
+        return print('array length can not be equal to 0')
+
+    length = len(array)
+    for i in range(1, length):
+
+        key = array[i]
+        j = i - 1
+
+        while j >= 0 and key < array[j]:
+            array[j + 1] = array[j]
+            j -= 1
+        array[j + 1] = key
+
+    return array
