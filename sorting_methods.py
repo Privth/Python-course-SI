@@ -66,11 +66,3 @@ def display(method, array):
     for i in range(len(array)):
         print("%d" % array[i], end=" ")
 
-
-array, array1 = generate_random_numbers(10, 1, 100), generate_random_numbers(10, 1, 100)
-
-print('BUBBLE')
-display(bubble_sort, array)
-
-print('\n\nINSERTION')
-display(insertion_sort, array1)
