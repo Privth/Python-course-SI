@@ -1,4 +1,5 @@
 import time
+import copy
 from sorting_methods import bubble_sort, insertion_sort
 
 
@@ -12,7 +13,7 @@ def timer(function, list_of_elements, sorting_method):
 
 
 def time_compare(function, list_of_elements):
-    copy_list_of_elements = list(list_of_elements)
+    copy_list_of_elements = copy.deepcopy(list_of_elements)
 
     times = [
         timer(function, list_of_elements, bubble_sort),
