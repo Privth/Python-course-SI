@@ -1,6 +1,6 @@
 import time
 import copy
-from sorting_methods import bubble_sort, insertion_sort
+from L1_L2.sorting_methods import bubble_sort, insertion_sort
 
 
 def timer(function, list_of_elements, sorting_method):
