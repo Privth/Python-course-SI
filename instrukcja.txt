@@ -1,0 +1,2 @@
+Program printuje dostępne pary walut, w konsoli wpisujemy indeks interesującej nas pary, wyniki są zapisywane w arkuszu,
+program sprawdza czy skoroszyt z nazwą pary walut już istnieje, jeśli istnieje dopisuje do ostatniego wiersza najnowsze wyniki, jeśli nie istnieje tworzy go.

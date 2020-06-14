@@ -13,7 +13,7 @@ W ramach MVP (minimalny zakres) program ma:
 (6pkt)
 
 2. Dodatkowo:
-- jeśli jedno API ma zbyt małe spektrum- poszerzcie o dodatkowe API i w przypadku braku informacji w API nr.1 sprawdzajcie kolejne.
+- jeśli jedno API ma zbyt małe spektrum- poszerzcie oins dodatkowe API i w przypadku braku informacji w API nr.1 sprawdzajcie kolejne.
 - wprowadzić orientacyjną wycenę zasobów oraz orientacyjną zmianę wartości wyrażoną w USD (także w ciągu 24h)
 - wprowadzić możliwość edycji posiadanych zasobów- dodania / usunięcia / zmiany ilości
 - własny feature - dołóżcie coś fajnego z własnej wyobraźni, co potencjalnie mogłoby się przydać użytkownikowi Waszej apki:)
