@@ -53,34 +53,39 @@ def check_state_of_currencies():
             transactions = json.loads(response.text)
             sorted_transactions = sorted(transactions, key=lambda i: i['date'])
 
-            profit_per = (float(sorted_transactions[0]['price']) / float(sorted_transactions[-1]['price'])) * 100 - 100
-            profit_mon = float(sorted_transactions[0]['price']) * amount - float(
-                sorted_transactions[-1]['price']) * amount
-            balance_amount_abs = abs(float(sorted_transactions[0]['price']) - float(sorted_transactions[-1]['price']))
+            last_transaction = float(sorted_transactions[0]['price'])
+            transaction_24h_ago = float(sorted_transactions[-1]['price'])
 
-            if profit_per >= 0:
-                print("Wzrost:", "+", round(float(profit_per), 2), "%")
-                print("W ciągu ostatniej doby zrobiłeś(aś)", round(profit_mon, 2))
+            profit_percent = (last_transaction / transaction_24h_ago) * 100 - 100
+            profit_amount = last_transaction * amount - transaction_24h_ago * amount
+            balance_amount_abs = abs(profit_amount)
+
+            if profit_percent >= 0:
+                print("Wzrost:", "+", round(float(profit_percent), 2), "%")
+                print("W ciągu ostatniej doby zarobiłeś(aś)", round(profit_amount, 2))
                 balance_type = 'dodatni'
-
             else:
-                print("Spadek:", round(float(profit_per), 2), "%")
-                print("W ciągu ostatniej doby straciłeś(aś)", round(profit_mon, 2))
+                print("Spadek:", round(float(profit_percent), 2), "%")
+                print("W ciągu ostatniej doby straciłeś(aś)", round(profit_amount, 2))
                 balance_type = 'ujemny'
 
             date = datetime.now()
             wb = load_workbook("crypto_archive.xlsx")
-            ws = wb.create_sheet(currency_from_input)
+            print(wb.sheetnames)
+            if currency_from_input not in wb.sheetnames:
+                ws = wb.create_sheet(currency_from_input)
+            else:
+                ws = wb[currency_from_input]
             ws.cell(row=1, column=1).value = "Data"
-            ws.cell(row=2, column=1).value = str(date)
+            ws.cell(row=ws.max_row + 1, column=1).value = str(date)
             ws.cell(row=1, column=2).value = "Para"
-            ws.cell(row=2, column=2).value = str(currency_from_input)
+            ws.cell(row=ws.max_row, column=2).value = str(currency_from_input)
             ws.cell(row=1, column=3).value = "Ilość środków"
-            ws.cell(row=2, column=3).value = str(amount)
+            ws.cell(row=ws.max_row, column=3).value = str(amount)
             ws.cell(row=1, column=4).value = "Bilans"
-            ws.cell(row=2, column=4).value = str(balance_type)
+            ws.cell(row=ws.max_row, column=4).value = str(balance_type)
             ws.cell(row=1, column=5).value = "Wartość bezwzględna bilansu"
-            ws.cell(row=2, column=5).value = str(balance_amount_abs)
+            ws.cell(row=ws.max_row, column=5).value = round(balance_amount_abs, 2)
             wb.save("crypto_archive.xlsx")
 
             print(
